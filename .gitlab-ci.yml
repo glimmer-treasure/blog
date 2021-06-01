@@ -1,0 +1,29 @@
+image: "glimmertreasure/node:14.17.0"
+
+build_for_production:
+  stage: build
+  script:
+    - npm install
+    - npm run build
+  artifacts:
+    paths:
+      - ./public
+  only:
+    - production
+
+deploy_to_production:
+  variables:
+    BUCKET_NAME: 'blog-glimmertreasure-com'
+    ENDPOINT: 'oss-cn-hangzhou-internal.aliyuncs.com'
+    ID: 'LTAI5tLRjvW1HTuiit9pnVFu'
+    KEY: 'nx6QohqktQH3xfEjbpqtJqkIIAdTFW'
+  stage: deploy
+  # before_script:
+  #   - aws --version
+  script:
+    - ./ossutil 
+    - aws s3 sync ./public/ oss://$BUCKET_NAME/  --delete -e $ENDPOINT -i $ID -k $KEY
+  dependencies:
+    - build_for_production
+  only:
+    - production
