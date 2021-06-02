@@ -2,6 +2,8 @@ image: "glimmertreasure/node:14.17.0"
 
 build_for_production:
   stage: build
+  tags:
+    - blog-runner
   script:
     - npm install
     - npm run build
@@ -15,6 +17,8 @@ deploy_to_production:
   stage: deploy
   # before_script:
   #   - aws --version
+  tags:
+    - blog-runner
   script:
     - ./ossutil sync ./public/ oss://$BUCKET_NAME/  --delete -e $ENDPOINT -i $ID -k $KEY
     # - aws s3 sync ./public/ oss://$BUCKET_NAME/  --delete -e $ENDPOINT -i $ID -k $KEY
