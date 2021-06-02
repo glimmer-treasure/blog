@@ -24,7 +24,7 @@ deploy_to_production:
   script:
     - pwd
     - ls
-    - ./ossutil sync ./public/ oss://$BUCKET_NAME/  --delete -e $ENDPOINT -i $ID -k $KEY
+    - /app/ossutil64 sync ./public/ oss://$BUCKET_NAME/  --delete -e $ENDPOINT -i $ID -k $KEY
     # - aws s3 sync ./public/ oss://$BUCKET_NAME/  --delete -e $ENDPOINT -i $ID -k $KEY
   dependencies:
     - build_for_production
