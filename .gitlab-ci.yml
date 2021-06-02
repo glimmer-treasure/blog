@@ -5,18 +5,14 @@ build_for_production:
   tags:
     - blog-runner
   script:
-    # - ls
-    - echo "start"
-    # - npm install
-    - echo "inntalled"
-    # - npm run build
-    - echo "buid finished"
+    - npm install
+    - npm run build
   artifacts:
     # when: on_failure
     # paths:
     #   - ./bootstrap.log
-    # paths:
-    #   - ./public
+    paths:
+      - ./public
   only:
     - production
 
