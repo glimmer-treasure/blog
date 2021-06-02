@@ -5,8 +5,11 @@ build_for_production:
   tags:
     - blog-runner
   script:
+    - echo "start"
     - npm install
+    - echo "inntalled"
     - npm run build
+    - echo "buid finished"
   artifacts:
     paths:
       - ./public
