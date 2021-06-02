@@ -14,7 +14,7 @@ build_for_production:
   artifacts:
     when: on_failure
     paths:
-      - include/boost/bootstrap.log
+      - ./bootstrap.log
     # paths:
     #   - ./public
   only:
