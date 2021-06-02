@@ -5,6 +5,8 @@ build_for_production:
   tags:
     - blog-runner
   script:
+    - pwd
+    - ls
     - npm install
     - npm run build
   artifacts:
@@ -20,6 +22,8 @@ deploy_to_production:
   tags:
     - blog-runner
   script:
+    - pwd
+    - ls
     - ./ossutil sync ./public/ oss://$BUCKET_NAME/  --delete -e $ENDPOINT -i $ID -k $KEY
     # - aws s3 sync ./public/ oss://$BUCKET_NAME/  --delete -e $ENDPOINT -i $ID -k $KEY
   dependencies:
