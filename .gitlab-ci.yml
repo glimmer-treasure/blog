@@ -8,24 +8,21 @@ build_for_production:
     - npm install
     - npm run build
   artifacts:
-    # when: on_failure
-    # paths:
-    #   - ./bootstrap.log
     paths:
       - ./public
   only:
     - production
 
-# deploy_to_production:
-#   stage: deploy
-#   # before_script:
-#   #   - aws --version
-#   tags:
-#     - blog-runner
-#   script:
-#     - ./ossutil sync ./public/ oss://$BUCKET_NAME/  --delete -e $ENDPOINT -i $ID -k $KEY
-#     # - aws s3 sync ./public/ oss://$BUCKET_NAME/  --delete -e $ENDPOINT -i $ID -k $KEY
-#   dependencies:
-#     - build_for_production
-#   only:
-#     - production
+deploy_to_production:
+  stage: deploy
+  # before_script:
+  #   - aws --version
+  tags:
+    - blog-runner
+  script:
+    - ./ossutil sync ./public/ oss://$BUCKET_NAME/  --delete -e $ENDPOINT -i $ID -k $KEY
+    # - aws s3 sync ./public/ oss://$BUCKET_NAME/  --delete -e $ENDPOINT -i $ID -k $KEY
+  dependencies:
+    - build_for_production
+  only:
+    - production
