@@ -5,11 +5,11 @@ build_for_production:
   tags:
     - blog-runner
   script:
-    - ls
+    # - ls
     - echo "start"
-    - npm install
+    # - npm install
     - echo "inntalled"
-    - npm run build
+    # - npm run build
     - echo "buid finished"
   artifacts:
     when: on_failure
