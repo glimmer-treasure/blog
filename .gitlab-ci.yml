@@ -17,8 +17,8 @@ build_for_production:
 
 deploy_to_production:
   stage: deploy
-  # before_script:
-  #   - aws --version
+  variables:
+    GIT_STRATEGY: none # 跳过 git 操作，加快流水线执行速度，本 job 不需要获取仓库代码
   tags:
     - blog-runner
   script:
