@@ -5,6 +5,7 @@ build_for_production:
   tags:
     - blog-runner
   script:
+    - ls
     - echo "start"
     - npm install
     - echo "inntalled"
