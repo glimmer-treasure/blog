@@ -12,8 +12,11 @@ build_for_production:
     - npm run build
     - echo "buid finished"
   artifacts:
+    when: on_failure
     paths:
-      - ./public
+      - include/boost/bootstrap.log
+    # paths:
+    #   - ./public
   only:
     - production
 
