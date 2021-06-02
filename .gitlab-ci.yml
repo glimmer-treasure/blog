@@ -22,10 +22,8 @@ deploy_to_production:
   tags:
     - blog-runner
   script:
-    - pwd
-    - ls
+    - /app/ossutil64 rm oss://$BUCKET_NAME/ -r -f -a -e $ENDPOINT -i $ID -k $KEY
     - /app/ossutil64 sync ./public/ oss://$BUCKET_NAME/  --delete -e $ENDPOINT -i $ID -k $KEY
-    # - aws s3 sync ./public/ oss://$BUCKET_NAME/  --delete -e $ENDPOINT -i $ID -k $KEY
   dependencies:
     - build_for_production
   only:
