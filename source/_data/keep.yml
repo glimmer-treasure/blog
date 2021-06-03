@@ -29,7 +29,7 @@ style:
   left_side_width: 260px
 
   # Content area max width
-  content_max_width: 920px
+  content_max_width: 960px
 
   # Mouse hover
   hover:
