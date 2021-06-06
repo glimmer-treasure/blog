@@ -39,7 +39,7 @@ style:
   # First screen
   first_screen:
     enable: true
-    background_img: https://picture-glimmertreasure-com.oss-cn-hangzhou.aliyuncs.com/%E5%8D%9A%E5%AE%A2%E9%A6%96%E9%A1%B5%E5%9B%BE%E7%89%87.jpg   # You can use local image or image external link
+    background_img: /images/bg.svg   # You can use local image or image external link
     description: 好奇、研究、记录
 
   # Scroll style settings
