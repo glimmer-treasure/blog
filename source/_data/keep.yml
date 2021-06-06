@@ -40,7 +40,7 @@ style:
   first_screen:
     enable: true
     background_img: /images/bg.svg   # You can use local image or image external link
-    description: 好奇、研究、记录
+    description: 好奇、研究与记录
 
   # Scroll style settings
   scroll:
