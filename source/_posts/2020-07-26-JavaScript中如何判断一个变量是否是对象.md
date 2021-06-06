@@ -1,5 +1,6 @@
 ---
 title: JavaScript中如何判断一个变量是否是对象
+abbrlink: 1819219542
 date: 2020-07-26 22:17:58
 tags:
 ---
