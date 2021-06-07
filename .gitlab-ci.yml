@@ -1,4 +1,4 @@
-image: "glimmertreasure/node:v2"
+image: "dockerhub.glimmertreasure.com/node:v2"
 
 build_for_production:
   stage: build
