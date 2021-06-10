@@ -4,7 +4,7 @@
 base_info:
   title: 微光宝盒的博客
   author: 微光宝盒
-  url: https://keep.xpoet.cn/
+  url: https://blog.glimmertreasure.com/
   # Logo image (You can use local image, image external link or don’t fill)
   logo_img:
 
@@ -70,8 +70,8 @@ social_contact:
 # Navigation menu
 # ---------------------------------------------------------------------------------------
 menu:
-  Home: /
-  Archives: /archives
+  首页: /
+  归档: /archives
   # Categories: /categories
   # Tags: /tags
   # Links: /links
@@ -170,8 +170,8 @@ local_search:
 # Comment plugin
 # ---------------------------------------------------------------------------------------
 comment:
-  enable: false
-  use: valine  # values: valine | gitalk | twikoo
+  enable: true
+  use: gitalk  # values: valine | gitalk | twikoo
 
   # Valine
   # See: https://github.com/xCss/Valine
@@ -183,10 +183,10 @@ comment:
   # Gitalk
   # See: https://github.com/gitalk/gitalk
   gitalk:
-    github_id:             # GitHub repo owner
-    repository:            # Repository name to store issues
-    client_id:             # GitHub Application Client ID
-    client_secret:         # GitHub Application Client Secret
+    github_id: glimmertreasure          # GitHub repo owner
+    repository: blog-comments           # Repository name to store issues
+    client_id: 3736c7cab384a1707835     # GitHub Application Client ID
+    client_secret: c8e5aac54e5973e0a64d5e342912f97d6415d0c3        # GitHub Application Client Secret
 
   # Twikoo
   # See: https://github.com/imaegoo/twikoo
