@@ -17,7 +17,8 @@ style:
   primary_color: '#0066CC'
 
   # Avatar (You can use local image or image external link)
-  avatar: /images/avatar.svg
+  # avatar: /images/avatar.svg
+  avatar: https://picture-glimmertreasure-com.oss-cn-hangzhou.aliyuncs.com/mars.jpg
 
   # Favicon (You can use local image or image external link)
   favicon: /images/logo.svg
@@ -39,8 +40,7 @@ style:
   # First screen
   first_screen:
     enable: true
-    # background_img: /images/bg.svg   # You can use local image or image external link
-    background_img: https://picture-glimmertreasure-com.oss-cn-hangzhou.aliyuncs.com/20210611112613.jpeg   # You can use local image or image external link
+    background_img: /images/bg.svg   # You can use local image or image external link
     description: 因为相信，所以看见。
 
   # Scroll style settings
