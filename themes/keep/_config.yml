@@ -125,7 +125,7 @@ code_copy:
 # Table of Contents in the Sidebar
 # ---------------------------------------------------------------------------------------
 toc:
-  enable: ture
+  enable: true
 
   # Automatically add list number to toc.
   number: false
