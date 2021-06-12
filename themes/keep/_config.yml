@@ -131,7 +131,7 @@ toc:
   number: false
 
   # If true, all level of TOC in a post will be displayed, rather than the activated part of it.
-  expand_all: false
+  expand_all: true
 
   # If true, open TOC every time when you enter the article page
   init_open: true
