@@ -3,7 +3,7 @@ image: "dockerhub.glimmertreasure.com/node:v2"
 build_for_production:
   stage: build
   tags:
-    - blog-runner
+    - gitlab-runner-blog
   script:
     - npm install
     - npm run build
@@ -18,7 +18,7 @@ deploy_to_production:
   variables:
     GIT_STRATEGY: none # 跳过 git 操作，加快流水线执行速度，本 job 不需要获取仓库代码
   tags:
-    - blog-runner
+    - gitlab-runner-blog
   script:
     - pwd
     - /app/ossutil64 rm oss://$BUCKET_NAME/ -r -f -a -e $ENDPOINT -i $ID -k $KEY
