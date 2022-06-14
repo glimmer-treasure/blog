@@ -1,0 +1,29 @@
+name: blog-depoly
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: 'master'
+      - uses: actions/setup-node@v3
+        with:
+          node-version: lts/gallium
+      - name: hexo build
+        run: |
+          npm install
+          npm run clean
+          npm run build
+      - name: set ossutil
+        uses: manyuanrong/setup-ossutil@v2.0
+        with:
+          endpoint: "oss-cn-hangzhou.aliyuncs.com"
+          access-key-id: "your_key_id"
+          access-key-secret: "your_key_secret"
+          sts-token: "sts_token"
