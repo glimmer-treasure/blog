@@ -24,6 +24,7 @@ jobs:
         uses: manyuanrong/setup-ossutil@v2.0
         with:
           endpoint: "oss-cn-hangzhou.aliyuncs.com"
-          access-key-id: "your_key_id"
-          access-key-secret: "your_key_secret"
-          sts-token: "sts_token"
+          access-key-id: ${{ secrets.ALI_OSS_ASSCESS_ID }}
+          access-key-secret: ${{ secrets.ALI_OSS_ASSCESS_SECRET }}
+      - name: copy to ali-oss
+        run: ossutil cp public oss://blog-glimmertreasure-com.oss-cn-hangzhou.aliyuncs.com -rf
