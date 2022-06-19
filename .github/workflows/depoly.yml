@@ -28,4 +28,4 @@ jobs:
           access-key-id: ${{ secrets.ALI_OSS_ASSCESS_ID }}
           access-key-secret: ${{ secrets.ALI_OSS_ASSCESS_SECRET }}
       - name: copy to ali-oss
-        run: ossutil cp public https://blog.glimmertreasure.com -rf
+        run: ossutil cp public oss://blog.glimmertreasure.com -rf
