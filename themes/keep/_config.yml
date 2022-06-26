@@ -187,7 +187,7 @@ comment:
     github_id: glimmer-treasure          # GitHub repo owner
     repository: bolg                     # Repository name to store issues
     client_id: e7055bf413741bb98c9d      # GitHub Application Client ID
-    client_secret: 1fed93d24e82a9a8a8024749b29b83c9dfdf21ac        # GitHub Application Client Secret
+    client_secret: 1b55b2ebd17d2b09dedd21057e6ecdd46e0ed5be        # GitHub Application Client Secret
 
   # Twikoo
   # See: https://github.com/imaegoo/twikoo
