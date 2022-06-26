@@ -185,7 +185,7 @@ comment:
   # See: https://github.com/gitalk/gitalk
   gitalk:
     github_id: glimmer-treasure          # GitHub repo owner
-    repository: bolg-gitalk              # Repository name to store issues
+    repository: bolg                     # Repository name to store issues
     client_id: e7055bf413741bb98c9d      # GitHub Application Client ID
     client_secret: 1fed93d24e82a9a8a8024749b29b83c9dfdf21ac        # GitHub Application Client Secret
 
