@@ -7,6 +7,7 @@ on:
 
 jobs:
   build:
+    name: 构建博客
     runs-on: ubuntu-latest
     environment: production
     steps:
