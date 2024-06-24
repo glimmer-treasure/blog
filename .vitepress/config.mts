@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "微光宝盒",
-  description: "博客",
+  description: "微光宝盒的博客",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
