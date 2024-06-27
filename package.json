@@ -8,7 +8,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "docs:dev": "vitepress dev",
     "docs:build": "vitepress build",
-    "docs:preview": "vitepress preview"
+    "docs:preview": "vitepress preview",
+    "blog": "node ./cli/index.js add"
   },
   "keywords": [
     "vitepress",
@@ -18,8 +19,13 @@
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^20.14.9",
+    "commander": "^12.1.0",
+    "dayjs": "^1.11.11",
     "glob": "^10.4.2",
     "gray-matter": "^4.0.3",
+    "inquirer": "^9.3.0",
+    "inquirer-date-prompt": "^3.0.0",
+    "minimist": "^1.2.8",
     "vitepress": "^1.2.3"
   }
 }
