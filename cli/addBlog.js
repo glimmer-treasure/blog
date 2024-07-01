@@ -2,6 +2,9 @@ import dayjs from 'dayjs'
 import { Command } from 'commander';
 import inquirer from 'inquirer';
 import DatePrompt from "inquirer-date-prompt";
+import fse from 'fs-extra'
+import process from 'node:process'
+import path from 'node:path'
 
 inquirer.registerPrompt("date", DatePrompt);
 
@@ -70,30 +73,51 @@ const getTags = async () => {
 
 const getBlogFrontMatter = async () => {
     let content = ''
+    let frontMatter = new Map()
     const title = await getTitle()
-    content = `title: ${title}\n`
+    frontMatter.set('title', title)
     const date = await getDate()
-    content += `date: ${date}\n`
+    frontMatter.set('date', date)
     const author = await getAuthor()
-    content += `author: ${author}\n`
+    frontMatter.set('author', author)
     const categories = await getCategories()
-    content += `categories:\n`
-    categories.forEach((category) => {
-        content += `\t- ${category}\n`
-    })
+    frontMatter.set('categories', categories)
     const tags = await getTags()
-    content += `tags:\n`
-    tags.forEach((tag) => {
-        content += `\t- ${tag}\n`
+    frontMatter.set('tags', tags)
+    const entires = [...frontMatter.entries()]
+    entires.forEach(([key, value]) => {
+        if (!Array.isArray(value)) {
+            content += `${key}: ${value}\n`
+        } else {
+            content += `${key}:\n`
+            value.forEach((item) => {
+                content += `\t- ${item}\n`
+            })
+        }
     })
-    return content
+    content = `---\n${content}---\n`
+    frontMatter.set('_content', content)
+    return frontMatter
+}
+
+const createBlog = async (blogDir, frontMatter) => {
+    let blogPath = ''
+    if (!blogDir) {
+        blogPath = path.resolve(process.cwd(), `drafts/${frontMatter.get('title')}.md`)
+    } else {
+        blogPath = path.resolve(blogDir, `${frontMatter.get('title')}.md`)
+    }
+    console.log('blogPath', blogPath)
+    await fse.outputFile(blogPath, frontMatter.get('_content'))
 }
 
 const makeAddBlogCommand = () => {
     const addBlog =  new Command('add');
-    addBlog.action(async () => {
+    addBlog
+    .argument('[path]', '添加博客的默认目录')
+    .action(async (path) => {
         const frontMatter = await getBlogFrontMatter()
-        console.log(frontMatter)
+        await createBlog(path, frontMatter)
     })
     return addBlog
 }
