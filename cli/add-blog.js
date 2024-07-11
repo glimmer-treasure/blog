@@ -10,7 +10,16 @@ inquirer.registerPrompt("date", DatePrompt);
 
 const prompt = inquirer.createPromptModule();
 
-const getTitle = async () => {
+/**
+ * FrontMatter
+ * @typedef {Map<string, string|Array<string>>} FrontMatter
+ */
+
+/**
+ * 设置博客的标题
+ * @param {FrontMatter} frontMatter 博客的封面
+ */
+const setTitle = async (frontMatter) => {
     const question = {
         name: 'title',
         message: '请输入博客标题:',
@@ -23,10 +32,14 @@ const getTitle = async () => {
         }
     }
     const answers = await prompt([question])
-    return answers[question.name]
+    frontMatter.set(question.name, answers[question.name])
 }
 
-const getDate = async () => {
+/**
+ * 设置博客的日期
+ * @param {FrontMatter} frontMatter 博客的封面
+ */
+const setDate = async (frontMatter) => {
     const question = {
         name: 'date',
         message: '请输入博客创建的日期:',
@@ -36,20 +49,30 @@ const getDate = async () => {
     }
     const answers = await prompt([question])
     const timestamp = answers[question.name] ?? Date.now()
-    return dayjs(timestamp).format('YYYY-MM-DD HH:mm:ss')
+    frontMatter.set(question.name, dayjs(timestamp).format('YYYY-MM-DD HH:mm:ss'))
 }
 
-const getAuthor = async () => {
+/**
+ * 设置博客的作者
+ * @param {FrontMatter} frontMatter 博客的封面
+ */
+const setAuthor = async (frontMatter) => {
     const question = {
         name: 'author',
         message: '请输入博客作者:',
         type: 'input',
     }
     const answers = await prompt([question])
-    return answers[question.name] ?? ''
+    if (answers[question.name]) {
+        frontMatter.set(question.name, answers[question.name])
+    }
 }
 
-const getCategories = async () => {
+/**
+ * 设置博客的分类
+ * @param {FrontMatter} frontMatter 博客的封面
+ */
+const setCategories = async (frontMatter) => {
     const question = {
         name: 'categories',
         message: '请输入博客的分类(以空格分隔):',
@@ -57,10 +80,14 @@ const getCategories = async () => {
     }
     const answers = await prompt([question])
     const categories = answers[question.name].split(' ').filter((category) => !['', null, undefined].includes(category))
-    return [...new Set(categories)]
+    frontMatter.set(question.name, [...new Set(categories)])
 }
 
-const getTags = async () => {
+/**
+ * 设置博客的标签
+ * @param {FrontMatter} frontMatter 博客的封面
+ */
+const setTags = async (frontMatter) => {
     const question = {
         name: 'tags',
         message: '请输入博客的标签(以空格分隔):',
@@ -68,35 +95,16 @@ const getTags = async () => {
     }
     const answers = await prompt([question])
     const tags = answers[question.name].split(' ').filter((tag) => !['', null, undefined].includes(tag))
-    return [...new Set(tags)]
+    frontMatter.set(question.name, [...new Set(tags)])
 }
 
 const getBlogFrontMatter = async () => {
-    let content = ''
     let frontMatter = new Map()
-    const title = await getTitle()
-    frontMatter.set('title', title)
-    const date = await getDate()
-    frontMatter.set('date', date)
-    const author = await getAuthor()
-    frontMatter.set('author', author)
-    const categories = await getCategories()
-    frontMatter.set('categories', categories)
-    const tags = await getTags()
-    frontMatter.set('tags', tags)
-    const entires = [...frontMatter.entries()]
-    entires.forEach(([key, value]) => {
-        if (!Array.isArray(value)) {
-            content += `${key}: ${value}\n`
-        } else {
-            content += `${key}:\n`
-            value.forEach((item) => {
-                content += `\t- ${item}\n`
-            })
-        }
-    })
-    content = `---\n${content}---\n`
-    frontMatter.set('_content', content)
+    await setTitle(frontMatter)
+    await setDate(frontMatter)
+    await setAuthor(frontMatter)
+    await setCategories(frontMatter)
+    await setTags(frontMatter)
     return frontMatter
 }
 
@@ -107,19 +115,30 @@ const createBlog = async (blogDir, frontMatter) => {
     } else {
         blogPath = path.resolve(blogDir, `${frontMatter.get('title')}.md`)
     }
-    console.log('blogPath', blogPath)
-    await fse.outputFile(blogPath, frontMatter.get('_content'))
+    const content = [...frontMatter.entries()].reduce((prev, entry) => {
+        const [key, value] = entry
+        if (!Array.isArray(value)) {
+            prev += `${key}: ${value}\n`
+        } else {
+            prev += `${key}:\n`
+            value.forEach((item) => {
+                prev += `\t- ${item}\n`
+            })
+        }
+        return prev
+    }, '')
+    await fse.outputFile(blogPath, `---\n${content}---\n`)
 }
 
-const makeAddBlogCommand = () => {
-    const addBlog =  new Command('add');
-    addBlog
+const getCommand = () => {
+    const command =  new Command('add');
+    command
     .argument('[path]', '添加博客的默认目录')
     .action(async (path) => {
         const frontMatter = await getBlogFrontMatter()
         await createBlog(path, frontMatter)
     })
-    return addBlog
+    return command
 }
 
-export default makeAddBlogCommand
+export default getCommand
