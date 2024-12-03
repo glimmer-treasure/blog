@@ -8,7 +8,9 @@ type FlexDirection = 'row' | 'row-reverse' | 'column' | 'column-reverse'
 interface Props {
     justifyContent?: JustifyCntent,
     alignItems?: AlignItems,
-    flexDirection?: FlexDirection
+    flexDirection?: FlexDirection,
+    tag?: string,
+    inline?: boolean
 }
 const props = defineProps<Props>()
 
@@ -17,21 +19,30 @@ const compClass = computed(() => {
         'flex-layout',
         `justify-content--${props.justifyContent ?? 'flex-start'}`,
         `align-items--${props.alignItems ?? 'flex-start'}`,
-        `flex-direction--${props.flexDirection ?? 'row'}`
+        `flex-direction--${props.flexDirection ?? 'row'}`,
+        props.inline && 'flex-inline'
     ]
+})
+
+const htmlName = computed(() => {
+    return props.tag ?? 'div'
 })
 
 </script>
 
 <template>
-    <div :class="compClass">
+    <component :is="htmlName" :class="compClass">
         <slot />
-    </div>
+    </component>
 </template>
 
 <style lang="css" scoped>
 .flex-layout {
     display: flex;
+}
+
+.flex-inline {
+    display: inline-flex;
 }
 
 .justify-content--flex-start {
