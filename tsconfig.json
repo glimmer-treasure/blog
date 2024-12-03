@@ -11,12 +11,18 @@
         "skipLibCheck": true,
         "lib": ["ESNext", "DOM"],
         "baseUrl": ".",
+        "paths": {
+            "@/components/*": ["src/components/*"],
+            "@/pages/*": ["src/pages/*"]
+          },
     },
     "include": [
         ".vitepress/**/*.ts",
         ".vitepress/**/*.d.ts",
         ".vitepress/**/*.tsx",
-        ".vitepress/**/*.vue"
+        ".vitepress/**/*.vue",
+        "src/**/*.vue",
+        "src/**/*.ts",
     ],
     "exclude": ["dist", "node_modules"]
 }
