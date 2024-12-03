@@ -2,10 +2,11 @@
 title: 观察者模式与发布订阅模式
 abbrlink: 3859766526
 date: 2021-04-13 20:43:47
-tags: 
-    - 设计模式
+tags:
+  - 设计模式
 ---
-## 观察者模式与发布订阅模式
+
+# 观察者模式与发布订阅模式
 
 ## 观察者模式
 
@@ -15,46 +16,45 @@ tags:
 
 ```javascript
 class Subject {
-    observers = []
-    // 收集和管理观察者
-    subscribe(observer) {
-        this.observers.push(observer)
-        const unsubscribe = () => {
-            this.observers = this.observers.filter(ele => ele !== observer)
-        }
-        return unsubscribe
-    }
-    notify() {
-        this.observers.forEach(observer => observer.update())
-    }
+  observers = [];
+  // 收集和管理观察者
+  subscribe(observer) {
+    this.observers.push(observer);
+    const unsubscribe = () => {
+      this.observers = this.observers.filter((ele) => ele !== observer);
+    };
+    return unsubscribe;
+  }
+  notify() {
+    this.observers.forEach((observer) => observer.update());
+  }
 }
 
 class Observer {
-    constructor(fn) {
-        this.fn = fn
-    }
-    subscribe(subject) {
-        subject.subscribe(this)
-    }
-    update() {
-        this.fn()
-    }
+  constructor(fn) {
+    this.fn = fn;
+  }
+  subscribe(subject) {
+    subject.subscribe(this);
+  }
+  update() {
+    this.fn();
+  }
 }
 
-const o1 = new Observer(() => console.log('o1'))
-const o2 = new Observer(() => console.log('o2'))
-const o3 = new Observer(() => console.log('o3'))
-const sub = new Subject()
+const o1 = new Observer(() => console.log("o1"));
+const o2 = new Observer(() => console.log("o2"));
+const o3 = new Observer(() => console.log("o3"));
+const sub = new Subject();
 
-o1.subscribe(sub)
-o2.subscribe(sub)
-o3.subscribe(sub)
+o1.subscribe(sub);
+o2.subscribe(sub);
+o3.subscribe(sub);
 
-sub.notify()
-
+sub.notify();
 ```
 
-从这段代码中我们可以看到目标对象实现了notify和subscribe两个方法还要有一个属性observers来存放所有订阅了该目标对象的观察者们。虽然观察者模式很好，但是目标对象不符合单一职责原则，因此会造成与观察者对象耦合度较高的问题。
+从这段代码中我们可以看到目标对象实现了 notify 和 subscribe 两个方法还要有一个属性 observers 来存放所有订阅了该目标对象的观察者们。虽然观察者模式很好，但是目标对象不符合单一职责原则，因此会造成与观察者对象耦合度较高的问题。
 
 ## 发布订阅模式
 
@@ -66,53 +66,64 @@ sub.notify()
 
 ```javascript
 class EventBus {
-    listeners = {}
-    subscribe(eventName, subscriber) {
-        if (this.listeners[eventName]) {
-            this.listeners[eventName].push(subscriber)
-        } else {
-            this.listeners[eventName] = [subscriber]
-        }
-        const unsubscribe = () => {
-            this.listeners[eventName] = this.listeners[eventName].filter(ele => ele !== subscriber)
-        }
-        return unsubscribe
+  listeners = {};
+  subscribe(eventName, subscriber) {
+    if (this.listeners[eventName]) {
+      this.listeners[eventName].push(subscriber);
+    } else {
+      this.listeners[eventName] = [subscriber];
     }
-    notify(eventName) {
-        if (this.listeners[eventName]) {
-            this.listeners[eventName].forEach(subscriber => {
-                subscriber.update()
-            });
-        }
+    const unsubscribe = () => {
+      this.listeners[eventName] = this.listeners[eventName].filter(
+        (ele) => ele !== subscriber
+      );
+    };
+    return unsubscribe;
+  }
+  notify(eventName) {
+    if (this.listeners[eventName]) {
+      this.listeners[eventName].forEach((subscriber) => {
+        subscriber.update();
+      });
     }
+  }
 }
 
 class Publisher {
-    publish(eventBus, eventName) {
-        eventBus.notify(eventName)
-    }
+  publish(eventBus, eventName) {
+    eventBus.notify(eventName);
+  }
 }
 
 class Subscriber {
-    constructor(fn) {
-        this.fn = fn
-    }
-    subscribe(eventBus, eventName) {
-        this.unsubscribe = eventBus.subscribe(eventName, this)
-    }
-    update() {
-        this.fn()
-    }
+  constructor(fn) {
+    this.fn = fn;
+  }
+  subscribe(eventBus, eventName) {
+    this.unsubscribe = eventBus.subscribe(eventName, this);
+  }
+  update() {
+    this.fn();
+  }
 }
 
-const eventBus = new EventBus()
-const subscribe1 = new Subscriber(() => console.log('subscribe1')).subscribe(eventBus, 'click1')
-const subscribe2 = new Subscriber(() => console.log('subscribe2')).subscribe(eventBus, 'click1')
-const subscribe3 = new Subscriber(() => console.log('subscribe3')).subscribe(eventBus, 'click1')
-const publish1 = new Publisher()
-const publish2 = new Publisher()
-const publish3= new Publisher()
-publish1.publish(eventBus, 'click1')
-publish2.publish(eventBus, 'click1')
-publish3.publish(eventBus, 'click1')
+const eventBus = new EventBus();
+const subscribe1 = new Subscriber(() => console.log("subscribe1")).subscribe(
+  eventBus,
+  "click1"
+);
+const subscribe2 = new Subscriber(() => console.log("subscribe2")).subscribe(
+  eventBus,
+  "click1"
+);
+const subscribe3 = new Subscriber(() => console.log("subscribe3")).subscribe(
+  eventBus,
+  "click1"
+);
+const publish1 = new Publisher();
+const publish2 = new Publisher();
+const publish3 = new Publisher();
+publish1.publish(eventBus, "click1");
+publish2.publish(eventBus, "click1");
+publish3.publish(eventBus, "click1");
 ```
