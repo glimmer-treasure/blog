@@ -10,7 +10,8 @@ interface Props {
     alignItems?: AlignItems,
     flexDirection?: FlexDirection,
     tag?: string,
-    inline?: boolean
+    inline?: boolean,
+    contentBox?: boolean,
 }
 const props = defineProps<Props>()
 
@@ -20,7 +21,8 @@ const compClass = computed(() => {
         `justify-content--${props.justifyContent ?? 'flex-start'}`,
         `align-items--${props.alignItems ?? 'flex-start'}`,
         `flex-direction--${props.flexDirection ?? 'row'}`,
-        props.inline && 'flex-inline'
+        props.inline && 'flex-inline',
+        props.contentBox && 'content-box'
     ]
 })
 
@@ -39,6 +41,15 @@ const htmlName = computed(() => {
 <style lang="css" scoped>
 .flex-layout {
     display: flex;
+    box-sizing: border-box;
+
+    &.inline {
+        display: inline-flex;
+    }
+
+    &.content-box {
+        box-sizing: content-box;
+    }
 }
 
 .flex-inline {
