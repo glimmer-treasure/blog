@@ -1,13 +1,21 @@
 import MiniSearch, { type SearchResult } from 'minisearch'
 import localSearchIndex from '@localSearchIndex'
 import { useData } from 'vitepress'
-import { shallowRef, watchEffect, markRaw } from 'vue'
+import { shallowRef, watchEffect, markRaw, useId, ref } from 'vue'
+import { debounce } from '@/utils/debounce'
+
+interface Item {
+    content: string
+    href: string
+    key: string | undefined
+}
 
 export function useMiniSearch() {
     const vitePressData = useData()
     const { localeIndex, theme } = vitePressData
     const searchIndexData = shallowRef(localSearchIndex)
     const engine = shallowRef()
+    const result = ref<Item[]>([])
 
     watchEffect(async () => {
         const jsonData = (await searchIndexData.value[localeIndex.value]?.())?.default
@@ -25,7 +33,23 @@ export function useMiniSearch() {
         engine.value = markRaw(miniSearch)
     })
 
+    const search = (fliterText: string) => {
+        const data: Array<SearchResult> = engine.value.search(fliterText)
+        result.value = data.map((item) => {
+            const { titles, title, id } = item
+            titles.push(title)
+            const content = titles.join(' > ')
+            const href = id
+            return {
+                content,
+                href,
+                key: useId()
+            }
+        })
+    }
+
     return {
-        search: (fliterText: string) => engine.value.search(fliterText)
+        search: debounce(search, { duration: 300 }),
+        result
     }
 }

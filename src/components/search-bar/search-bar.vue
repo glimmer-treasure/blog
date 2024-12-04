@@ -1,21 +1,18 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
-import { useMiniSearch } from './useMiniSearch'
 import FlexLayout from '@/components/flex-layout';
 
+import { useClickOutside } from '@/utils/useClickOutSide'
+import SearchItem from './search-item.vue'
+import { useMiniSearch } from './useMiniSearch'
+
+
 let searchKey = ref<string>('')
+const conteiner = ref(null)
 
-const searchEngine = useMiniSearch()
+const { search, result } = useMiniSearch()
 
-const search = (value: string) => {
-    const data = searchEngine.search(value)
-    console.log(data)
-}
-
-watch(searchKey, () => {
-    console.log(`搜索的值为：${searchKey.value}`)
-    search(searchKey.value)
-})
+watch(searchKey, () => search(searchKey.value))
 
 const handleKeydown = (event: KeyboardEvent) => {
     const { key, ctrlKey, metaKey, shiftKey, isComposing } = event
@@ -38,43 +35,71 @@ const handleInput = (event: InputEvent) => {
     searchKey.value = target.value
 }
 
+useClickOutside(conteiner, () => {
+    result.value = []
+})
+
 </script>
 
 <template>
-    <FlexLayout flex-direction="column" align-items="center" class="search-bar">
-        <FlexLayout class="input_row" align-items="center">
-            <input @keydown="handleKeydown" @input="handleInput" />
+    <FlexLayout ref="conteiner" flex-direction="column" align-items="center" class="search-bar">
+        <FlexLayout class="input-row" align-items="center">
+            <input @keydown="handleKeydown" @input="handleInput" @focus="search(searchKey)" />
         </FlexLayout>
-        <FlexLayout align-items="center">
-
+        <FlexLayout v-if="result.length > 0" class="data-row" flex-direction="column">
+            <hr class="search-bar-divider" />
+            <FlexLayout class="search-data-section" tag="ul" align-items="flex-start" flex-direction="column">
+                <SearchItem v-for="item of result" :content="item.content" :href="item.href" :key="item.id" />
+            </FlexLayout>
         </FlexLayout>
     </FlexLayout>
 </template>
 
 <style lang="css" scoped>
 .search-bar {
+    --border-color: #dfe1e5;
     width: 584px;
-    border: 1px solid #dfe1e5;
+    border: 1px solid var(--border-color);
     border-radius: 24px;
     background-color: var(--vp-c-bg);
+
+    &:has(input:focus) {
+        box-shadow: rgba(32, 33, 36, 0.28) 0px 1px 6px 0
+    }
 }
 
-.search-bar:has(input:focus) {
-    box-shadow: rgba(32, 33, 36, 0.28) 0px 1px 6px 0
-}
-
-.search-bar input {
+.data-row {
     width: 100%;
+    padding-bottom: 20px;
 }
 
-.input_row {
+.search-bar-divider {
+    box-sizing: border-box;
+    width: calc(100% - 24px - 12px);
+    margin: 0px 20px 0px 16px;
+    padding-bottom: 4px;
+    border-top: 1px solid var(--border-color);
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+}
+
+.search-data-section {
+    box-sizing: border-box;
+    width: 100%;
+    max-height: 360px;
+    overflow-y: auto;
+}
+
+.input-row {
     padding: 0 36px;
     width: 100%;
     height: 44px;
     overflow: hidden;
-}
 
-.input_row input {
-    height: 100%;
+    & input {
+        width: 100%;
+        height: 100%;
+    }
 }
 </style>
