@@ -2,13 +2,13 @@
 import { ref, watch } from 'vue'
 import FlexLayout from '@/components/flex-layout';
 
-import { useClickOutside } from '@/utils/useClickOutSide'
+import { useClickOutside } from '@/utils/useClickOutside'
 import SearchItem from './search-item.vue'
 import { useMiniSearch } from './useMiniSearch'
 
 
 let searchKey = ref<string>('')
-const conteiner = ref(null)
+const container = ref(null)
 
 const { search, result } = useMiniSearch()
 
@@ -35,14 +35,14 @@ const handleInput = (event: InputEvent) => {
     searchKey.value = target.value
 }
 
-useClickOutside(conteiner, () => {
+useClickOutside(container, () => {
     result.value = []
 })
 
 </script>
 
 <template>
-    <FlexLayout ref="conteiner" flex-direction="column" align-items="center" class="search-bar">
+    <FlexLayout ref="container" flex-direction="column" align-items="center" class="search-bar">
         <FlexLayout class="input-row" align-items="center">
             <input @keydown="handleKeydown" @input="handleInput" @focus="search(searchKey)" />
         </FlexLayout>
@@ -57,14 +57,18 @@ useClickOutside(conteiner, () => {
 
 <style lang="css" scoped>
 .search-bar {
-    --border-color: #dfe1e5;
     width: 584px;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--color-border);
     border-radius: 24px;
     background-color: var(--vp-c-bg);
+    box-shadow: var(--box-shadow-1);
+
+    &:hover {
+        box-shadow: var(--box-shadow-2);
+    }
 
     &:has(input:focus) {
-        box-shadow: rgba(32, 33, 36, 0.28) 0px 1px 6px 0
+        box-shadow: var(--box-shadow-3);
     }
 }
 

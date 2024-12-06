@@ -1,0 +1,47 @@
+:root {
+    /* 主色浅色背景色 */
+    --color-primary-bg: #f0f8ff;
+    /* 主色浅色背景悬浮态 */
+    --color-primary-bg-hover: #f0f7ff;
+    /* 主色描边色 */
+    --color-primary-border: #e3f0ff;
+    /* 主色描边色悬浮态 */
+    --color-primary-border-hover: #bad8ff;
+    /* 主色悬浮态 */
+    --color-primary-hover: #8eb9fa;
+    /* 品牌主色 */
+    --color-primary: #6296ee;
+    /* 主色激活态 */
+    --color-primary-active: #4872c7;
+    /* 主色文本悬浮态 */
+    --color-primary-text-hover: #8eb9fa;
+    /* 主色文本 */
+    --color-primary-text: #6296ee;
+    /* 主色文本激活态 */
+    --color-primary-text-active: #4872c7;
+
+    /* 基础文本色 */
+    --color-text-base: rgba(0, 0, 0, 1);
+    /* 基础背景色 */
+    --color-bg-base: rgba(255, 255, 255, 1);
+    /* 一级文本色 */
+    --color-text: rgba(0, 0, 0, 0.88);
+    /* 二级文本色 */
+    --color-text-secondary: rgba(0, 0, 0, 0.65);
+    /* 三级文本色 */
+    --color-text-tertiary: rgba(0, 0, 0, 0.45);
+    /* 四级文本色 */
+    --color-text-quaternary: rgba(0, 0, 0, 0.25);
+
+    /* 一级边框色 */
+    --color-border: #d9d9d9;
+    /* 二级边框色 */
+    --color-border-secondary: #f0f0f0;
+
+    /* 一级阴影 */
+    --box-shadow-1: rgba(0, 0, 0, 0.16) 0px 1px 2px -2px;
+    --box-shadow-2: rgba(0, 0, 0, 0.12) 0px 3px 6px 0px;
+    --box-shadow-3: rgba(0, 0, 0, 0.09) 0px 5px 12px 4px;
+  
+  
+}

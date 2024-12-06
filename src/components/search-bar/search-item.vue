@@ -27,7 +27,7 @@ const props = defineProps<Props>()
     padding: 0px 20px 0px 16px;
 
     &:hover {
-        background-color: rgb(243, 245, 246);
+        background-color: var(--color-primary-bg);
     }
 }
 
