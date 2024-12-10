@@ -61,13 +61,10 @@ useClickOutside(container, () => {
     border: 1px solid var(--color-border);
     border-radius: 24px;
     background-color: var(--vp-c-bg);
-    box-shadow: var(--box-shadow-1);
+    box-shadow: var(--box-shadow-2);
 
+    &:has(input:focus),
     &:hover {
-        box-shadow: var(--box-shadow-2);
-    }
-
-    &:has(input:focus) {
         box-shadow: var(--box-shadow-3);
     }
 }
@@ -82,7 +79,7 @@ useClickOutside(container, () => {
     width: calc(100% - 24px - 12px);
     margin: 0px 20px 0px 16px;
     padding-bottom: 4px;
-    border-top: 1px solid var(--border-color);
+    border-top: 1px solid var(--color-border-secondary);
     border-bottom: none;
     border-left: none;
     border-right: none;
