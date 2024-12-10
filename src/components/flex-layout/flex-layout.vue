@@ -22,7 +22,7 @@ const compClass = computed(() => {
         `align-items--${props.alignItems ?? 'flex-start'}`,
         `flex-direction--${props.flexDirection ?? 'row'}`,
         props.inline && 'flex-inline',
-        props.contentBox && 'content-box'
+        props.contentBox ? 'content-box' : 'border-box'
     ]
 })
 
@@ -41,7 +41,6 @@ const htmlName = computed(() => {
 <style lang="css" scoped>
 .flex-layout {
     display: flex;
-    box-sizing: border-box;
 
     &.inline {
         display: inline-flex;
