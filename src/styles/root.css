@@ -42,6 +42,87 @@
     --box-shadow-1: rgba(0, 0, 0, 0.16) 0px 1px 2px -2px;
     --box-shadow-2: rgba(0, 0, 0, 0.12) 0px 3px 6px 0px;
     --box-shadow-3: rgba(0, 0, 0, 0.09) 0px 5px 12px 4px;
-  
-  
+    
+    /* 外边距 */
+    --margin-xxs: 4px;
+    --margin-xs: 8px;
+    --margin-sm: 12px;
+    --margin: 16px;
+    --margin-md: 20px;
+    --margin-lg: 24px;
+    --margin-xl: 32px;
+    --margin-xxl: 48px;
+
+    /* 内边距 */
+    --padding-xxs: 4px;
+    --padding-xs: 8px;
+    --padding-sm: 12px;
+    --padding: 16px;
+    --padding-md: 20px;
+    --padding-lg: 24px;
+    --padding-xl: 32px;
+
+    /* 圆角 */
+    --border-radius-xs: 2px;
+    --border-radius-sm: 4px;
+    --border-radius: 6px;
+    --border-radius-lg: 8px;
+
+    /* 字体大小 */
+    --font-size: 14px;
+    --font-size-sm: 12px;
+    --font-size-lg: 16px;
+    --font-size-xl: 20px;
+
+    /* 标题字体大小 */
+    --font-size-heading1: 38px;
+    --font-size-heading2: 30px;
+    --font-size-heading3: 24px;
+    --font-size-heading4: 20px;
+    --font-size-heading5: 16px;
+
+    /* 行高 */
+    --line-height: 1.57;
+    --line-height-sm: 1.67;
+    --line-height-lg: 1.5;
+
+    /* 标题行高 */
+    --line-height-heading1: 1.21;
+    --line-height-heading2: 1.27;
+    --line-height-heading3: 1.33;
+    --line-height-heading4: 1.4;
+    --line-height-heading5: 1.5;
+
+    /* 行高 */
+    .line-height {
+        line-height: var(--line-height);
+    }
+    .line-height-sm {
+        line-height: var(--line-height-sm);
+    }
+    .line-height-lg {
+        line-height: var(--line-height-lg);
+    }
+
+    /* 标题行高 */
+    .line-height-heading1 {
+        line-height: var(--line-height-heading1);
+    }
+    .line-height-heading2 {
+        line-height: var(--line-height-heading2);
+    }
+    .line-height-heading3 {
+        line-height: var(--line-height-heading3);
+    }
+    .line-height-heading4 {
+        line-height: var(--line-height-heading4);
+    }
+    .line-height-heading5 {
+        line-height: var(--line-height-heading5);
+    }
+
+    .border-box {
+        box-sizing: border-box;
+    }
+
 }
