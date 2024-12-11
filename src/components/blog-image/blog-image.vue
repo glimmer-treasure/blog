@@ -7,7 +7,7 @@ const props = defineProps<{
 <template>
     <figure>
         <img :src="props.src" :title="props.caption" :alt="props.caption">
-        <figcaption>{{ props.caption }}</figcaption>
+        <figcaption v-if="props.caption">{{ props.caption }}</figcaption>
     </figure>
 </template>
 <style lang="css" scoped>
