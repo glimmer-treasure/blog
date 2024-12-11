@@ -42,7 +42,6 @@ const groups = [...groupsMap.values()]
 
 <style lang="css" scoped>
 .posts-timeline {
-    max-height: 60vh;
     width: clamp(720px, 50%, 960px);
     box-shadow: var(--box-shadow-3);
     border-radius: var(--border-radius-lg);
