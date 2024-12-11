@@ -5,9 +5,9 @@ export default [
     {
         text: '所有文章',
         items: getPosts()
-    },
-    {
-        text: '草稿',
-        items: getDrafts()
     }
+    // {
+    //     text: '草稿',
+    //     items: getDrafts()
+    // }
 ]
