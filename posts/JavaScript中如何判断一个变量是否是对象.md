@@ -13,7 +13,7 @@ tags:
 
 ### 1.1  JavaScript的变量类型
 
-![JavaScript的类型](./JavaScript的类型.png)
+<BlogImage src="/JavaScript中如何判断一个变量是否是对象/images/JavaScript的类型.png" caption="JavaScript的类型" />
 
 如上图所示，到目前为止JavaScript总共有8中类型，这8中类型分为基本类型和引用类型两大部分。
 
@@ -23,13 +23,13 @@ typeof 操作符返回一个字符串，表示未经计算的操作数的类型�
 
 typeof返回的所有结果入下图所示
 
-![typeof返回的结果](./typeof返回的结果.png)
+<BlogImage src="/JavaScript中如何判断一个变量是否是对象/images/typeof返回的结果.png" caption="typeof返回的结果" />
 
 ### 1.3 JavaScript类型和typeof的对应关系
 
 JavaScript类型和typeof的对应关系如下图所示，typeof的返回值和JavaScript类型并不是一一对应的关系。
 
-![JavaScript类型和typeof的对应关系](./typeof与JavaScript类型的对应关系.png)
+<BlogImage src="/JavaScript中如何判断一个变量是否是对象/images/typeof与JavaScript类型的对应关系.png" caption="typeof与JavaScript类型的对应关系" />
 
 ## 2. 如何判断一个变量是否为对象
 

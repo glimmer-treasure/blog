@@ -19,11 +19,11 @@ HTTPS就是安全的HTTP，简而言之HTTPS = HTTP + SSL，即在HTTP的基础�
 
 身份认证就是我们能够确认我们当前访问的服务器就是我们要访问的服务器而不是黑客的服务器。
 
-![](./HTTP中间人攻击.png)
+<BlogImage src="/HTTPS握手过程/HTTP中间人攻击.png" caption="HTTP中间人攻击" />
 
 如上图所示，当使用HTTP协议时，用户以为自己是在和服务器通信，其实用户是在和黑客进行通信。
 
-![](./HTTPS身份认证.png)
+<BlogImage src="/HTTPS握手过程/HTTPS身份认证.png" caption="HTTPS身份认证" />
 
 当使用HTTPS协议时，用户会先获取服务器的证书来验证当前通信的对象是否是服务器。
 
@@ -31,11 +31,11 @@ HTTPS就是安全的HTTP，简而言之HTTPS = HTTP + SSL，即在HTTP的基础�
 
 HTTP协议的通行双方使用的是明文进行通行，如果遭到黑客的监听那么通信内容一览无余。
 
-![](./HTTP明文通信.png)
+<BlogImage src="/HTTPS握手过程/HTTP明文通信.png" caption="HTTP明文通信" />
 
 HTTPS的通信双方使用密文进行通信，即使遭到黑客监听黑客也无法获取通信的具体内容。
 
-![](./HTTPS加密通信.png)
+<BlogImage src="/HTTPS握手过程/HTTPS加密通信.png" caption="HTTPS加密通信" />
 
 ## HTTPS握手过程
 
