@@ -6,6 +6,7 @@ import sidebar from './sidebar'
 export default defineConfig({
     title: '微光宝盒',
     description: '微光宝盒的博客',
+    outDir: './dist',
     themeConfig: {
         search: {
             provider: 'local'
