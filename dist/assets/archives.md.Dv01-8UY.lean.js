@@ -1,1 +1,0 @@
-import{_ as e,c as a,o as t}from"./chunks/framework.COT_U_ro.js";const l=JSON.parse('{"title":"","description":"","frontmatter":{"layout":"BlogArchives","sidebar":false},"headers":[],"relativePath":"archives.md","filePath":"archives.md"}'),r={name:"archives.md"};function s(c,o,i,n,d,p){return t(),a("div")}const f=e(r,[["render",s]]);export{l as __pageData,f as default};

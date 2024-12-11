@@ -1,1 +1,0 @@
-import{_ as e,c as t,o as a}from"./chunks/framework.COT_U_ro.js";const l=JSON.parse('{"title":"","description":"","frontmatter":{"layout":"BlogHome","sidebar":false},"headers":[],"relativePath":"index.md","filePath":"index.md"}'),o={name:"index.md"};function n(r,s,c,d,i,p){return a(),t("div")}const m=e(o,[["render",n]]);export{l as __pageData,m as default};

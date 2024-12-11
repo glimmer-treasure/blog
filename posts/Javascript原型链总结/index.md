@@ -33,7 +33,7 @@ var tom = new Man()
 
 既然可以通过构造函数访问对象的原型对象，那么也应该能通过原型对象访问到构造函数才对（因为构造函数和原型对象是一一对应的关系）。因此在JavaScript中原型对象的``constructor``属性指向了与原型对象相对应的构造函数。即``Object.getPrototypeOf(tom).constructor === Man``。
 
-<BlogImage src="./images/构造函数与原型链.svg" caption="构造函数与原型链" />
+<BlogImage src="/Javascript原型链总结/images/构造函数与原型链.svg" caption="构造函数与原型链" />
 
 ## 普通对象的原型链
 
@@ -45,7 +45,7 @@ var example = {}
 
 普通对象的构造函数为``Object``, 因此``example``对象的原型对象为``Object.prototype``。``Object.prototype``也是一个对象，它的原型对象为``null``。由此可知``Object.prototype``对象是一切对象的根对象。
 
-<BlogImage src="./images/普通对象的原型链.svg" caption="普通对象的原型链" />
+<BlogImage src="/Javascript原型链总结/images/Javascript原型链总结/普通对象的原型链.svg" caption="普通对象的原型链" />
 
 ## 函数对象的原型链
 
@@ -58,15 +58,15 @@ var tom = new Man()
 
 我们还以以上代码进行分析，我们已经知道了对象``tom``的原型为``Man.prototype``，那么``Man.prototype``的原型是什么呢？``Man.prototype``作为一个对象，是通过构造函数``Object``创建的，因此``Man.prototype``的原型是``Object.prototype``。即``Object.getPrototypeOf(Man.prototype) === Object.prototype``。因此``Man.prototype``的原型链为``Man.prototype --> Object.prototype --> null``。
 
-<BlogImage src="./images/原型的原型.svg" caption="原型的原型" />
+<BlogImage src="/Javascript原型链总结/images/原型的原型.svg" caption="原型的原型" />
 
 函数``Man``作为一个对象，那它的原型链是什么呢？在JavaScript中函数对象也有构造函数，函数对象的构造函数为``Function``。因此函数对象``Man``的原型为``Function.prototype``。``Function.prototype``对象作为一个普通对象，因此``Function.prototype``的原型为``Object.prototype``。所以函数对象``Man``的原型链为``Man --> Function.prototype --> Object.prototype --> null``。
 
-<BlogImage src="./images/函数对象的原型链.svg" caption="函数对象的原型链" />
+<BlogImage src="/Javascript原型链总结/images/函数对象的原型链.svg" caption="函数对象的原型链" />
 
 既然函数对象的构造函数``Function``也是一个对象那么``Function``对象的原型是什么呢？在JavaScript中，``Function``对象被认为是由``Function``构造函数生成的对象。因此``Function``对象的原型也是``Function.prototype``。即``Function``对象的原型链为``Function --> Function.prototype --> Object.prototype --> null``。
 
-<BlogImage src="./images/Function对象的原型链.svg" caption="Function对象的原型链" />
+<BlogImage src="/Javascript原型链总结/images/Function对象的原型链.svg" caption="Function对象的原型链" />
 
 ## ES6中的继承与原型链
 
@@ -80,4 +80,4 @@ var tom = new Man()
 
 上述代码中我们先声明了``Human``类，然后又声明了一个继承自``Human``类的``Man``类，最后再创造了一个``Man``类的实例对象``tom``。这里存在两条原型链。一条是: ``tom --> Man.prototype --> Human.prototype --> Object.prototype --> null``，这个是实例对象的原型链。另一条是``Man --> Human --> Function.prototype --> Object.prototype --> null``, 这个是类对象的原型链。
 
-<BlogImage src="./images/类与继承的原型链.svg" caption="类与继承的原型链" />
+<BlogImage src="/Javascript原型链总结/images/类与继承的原型链.svg" caption="类与继承的原型链" />
