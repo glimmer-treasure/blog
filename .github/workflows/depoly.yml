@@ -1,0 +1,31 @@
+name: blog-depoly
+
+on:
+  push:
+    branches:
+      - vitepress
+
+jobs:
+  build:
+    name: 构建博客
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: 'vitepress'
+      - uses: actions/setup-node@v3
+        with:
+          node-version: lts/jod
+      - name: vitepress build
+        run: |
+          npm install
+          npm run docs:build
+      - name: set ossutil
+        uses: manyuanrong/setup-ossutil@v2.0
+        with:
+          endpoint: "oss-cn-hangzhou.aliyuncs.com"
+          access-key-id: ${{ secrets.ALI_OSS_ASSCESS_ID }}
+          access-key-secret: ${{ secrets.ALI_OSS_ASSCESS_SECRET }}
+      - name: copy to ali-oss
+        run: ossutil cp dist oss://blog-glimmertreasure-com -rf
