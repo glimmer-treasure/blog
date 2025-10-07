@@ -9,7 +9,7 @@ const draftsDir = path.resolve(rootPath, "./drafts");
 const files = glob.sync(`${draftsDir}/**/*.md`);
 
 export const getDrafts = () => {
-  let allDrafts: Array<DefaultTheme.SidebarItem> = [];
+  const allDrafts: Array<DefaultTheme.SidebarItem> = [];
   files.forEach((postPath) => {
     const file = matter.read(postPath);
     const postInfo = {

@@ -9,7 +9,7 @@ const postsDir = path.resolve(rootPath, "./posts");
 const files = glob.sync(`${postsDir}/**/*.md`);
 
 export const getPosts = () => {
-  let allPosts: Array<DefaultTheme.SidebarItem> = [];
+  const allPosts: Array<DefaultTheme.SidebarItem> = [];
   files.forEach((postPath) => {
     const file = matter.read(postPath);
     const postInfo = {
